@@ -1,0 +1,57 @@
+# cask_args appdir: "/Applications"
+
+# Casks (brew ls -1 --cask)
+cask "android-studio"
+cask "appcleaner"
+cask "blender"
+cask "browserstacklocal"
+cask "claude-code"
+cask "coteditor"
+cask "db-browser-for-sqlite"
+cask "discord"
+cask "docker-desktop"
+cask "figma"
+cask "firefox"
+cask "fontbase"
+cask "ghostty"
+cask "github"
+cask "google-chrome"
+cask "iina"
+cask "linear-linear"
+cask "spline"
+cask "ungoogled-chromium"
+cask "visual-studio-code"
+cask "zed"
+cask "zoom"
+cask "zulu"
+
+# Formulae (brew ls -1 --formulae)
+brew "bun"
+brew "cocoapods"
+brew "composer"
+brew "curl"
+brew "docker"
+brew "docker-completion"
+brew "docker-compose"
+brew "ffmpeg"
+brew "flac"
+brew "gh"
+brew "git"
+brew "imagemagick"
+brew "jsongrep"
+brew "mas"
+brew "php@8.3"
+brew "pnpm"
+brew "qrencode"
+brew "readline"
+brew "ripgrep"
+brew "sqlite"
+brew "stripe-cli"
+brew "zsh-autocomplete"
+
+# Taps (brew tap)
+tap "oven-sh/bun"
+
+# Mac App Store (mas list)
+mas "Amphetamine", id: 937984704
+mas "Xcode", id: 497799835

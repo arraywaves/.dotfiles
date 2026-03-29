@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+**/*/.DS_Store
+config/.DS_Store
+nix/.DS_Store
+.DS_Store
+
+# Caddy
+**/*/Caddyfile
+personal/caddy/Caddyfile
+
+# Private
+private/
+*.env
+!.env.example

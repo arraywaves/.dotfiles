@@ -1,0 +1,15 @@
+---
+BasedOnStyle: LLVM
+AlignAfterOpenBracket: AlwaysBreak
+AlignConsecutiveDeclarations: "false"
+AlignEscapedNewlines: Left
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: Mozilla
+ContinuationIndentWidth: "4"
+IncludeBlocks: Regroup
+IncludeIsMainRegex: $?
+IndentWidth: "4"
+SpaceBeforeParens: ControlStatements
+SpacesBeforeTrailingComments: "4"
+TabWidth: "4"
+UseTab: Always

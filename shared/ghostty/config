@@ -1,0 +1,10 @@
+# Style
+background-opacity = 0.92
+background-blur = true
+window-padding-x = 16
+window-padding-y = 12,16
+window-height = 16
+window-width = 48
+
+# Window
+theme = Cobalt Next

@@ -1,0 +1,42 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"ignorePatterns": [
+		"dist",
+		"build",
+		"public",
+		"draco",
+		"fonts",
+		"migrations",
+		"*.md",
+		"payload-types.ts",
+		"*.env",
+		"*env.example",
+		"*.db"
+	],
+	"printWidth": 80,
+	"useTabs": true,
+	"tabWidth": 4,
+	"semi": true,
+	"singleQuote": false,
+	"jsxSingleQuote": false,
+	"trailingComma": "all",
+	"arrowParens": "always",
+	"bracketSameLine": false,
+	"bracketSpacing": true,
+	"objectWrap": "preserve",
+	"experimentalSortImports": {
+		"groups": [
+			// "sibling",
+			// "parent",
+			// "style",
+			"external",
+			"internal"
+			// "type"
+			// "builtin"
+		],
+		"internalPattern": ["~/", "@/", "./", "../"],
+		"newlinesBetween": true,
+		"order": "asc"
+	},
+	"experimentalSortPackageJson": {}
+}
