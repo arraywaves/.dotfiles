@@ -56,7 +56,7 @@ Maybe someone will find this useful, below this are just some reminders for myse
 
 ## zed
 
-*Create Symlink*
+**Create Symlink**
 `ln -s ~/.dotfiles/shared/zed/settings.json ~/.config/zed/settings.json`
 
 
@@ -147,10 +147,10 @@ in `.claude/settings.json` add:
 ## blender
 
 **Open:** `~/.dotfiles/shared/blender/default.blend`
-*File > Save Startup File > Confirm*
+_File > Save Startup File > Confirm_
 
 
 ## macOS Performance Tip
 
 "If you are using macOS, add your terminal app (Ghostty, iTerm2, Terminal, …) to the approved "Developer Tools" apps in the Privacy panel of System Settings and restart your terminal app. Your Rust builds will be about ~30% faster."
-- *Source: [vite+ contributing](https://github.com/voidzero-dev/vite-plus/blob/main/CONTRIBUTING.md#macos-performance-tip)*
+_Source: [vite+ contributing](https://github.com/voidzero-dev/vite-plus/blob/main/CONTRIBUTING.md#macos-performance-tip)_
