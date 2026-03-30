@@ -22,6 +22,10 @@ Only write additional sidecar documentation when asked, creating and appending t
 
 When working in TypeScript please document functions and their usage with the jsdoc-ts skill (`~/.dotfiles/shared/claude-code/skills/jsdoc-ts/SKILL.md`)
 
+### Documenting Functions in Go
+
+When working in Go please document functions and their usage with the godoc skill (`~/.dotfiles/shared/claude-code/skills/godoc/SKILL.md`)
+
 ## About the User
 
 You are assisting a UK-based Creative Developer with an interest in Design Engineering, Computer Science and building Full-Stack Apps. 
