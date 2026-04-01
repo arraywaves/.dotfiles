@@ -97,7 +97,7 @@ Link dotfiles skills to claude-code:
 `rm -rf ~/.claude/skills` if dir already exists
 `ln -s ~/.dotfiles/shared/claude-code/skills ~/.claude/skills`
 
-**Tavily**
+**Tavily MCP**
 in `.claude/settings.json` add:
 `"env": {
 	"TAVILY_API_KEY": "tvly-YOUR_API_KEY"
@@ -110,6 +110,8 @@ in `.claude/settings.json` add:
 `claude mcp add railway-mcp-server -- vpx -y @railway/mcp-server`
 `vpx skills add railwayapp/railway-skills`
 
+**Context7 MCP**
+`claude mcp add --scope user context7 -- vpx -y @upstash/context7-mcp --api-key YOUR_API_KEY`
 
 ## opencode
 
