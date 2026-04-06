@@ -54,6 +54,7 @@ brew "flac"
 brew "fzf"
 brew "gh"
 brew "git"
+brew "git-crypt"
 brew "git-filter-repo"
 brew "go"
 brew "imagemagick"
@@ -73,6 +74,7 @@ brew "python-setuptools"
 brew "qrencode"
 brew "railway"
 brew "readline"
+brew "requestly"
 brew "ripgrep"
 brew "ruff"
 brew "rustup"
@@ -102,6 +104,7 @@ brew "pkgconfig"
 # Taps (brew tap)
 tap "encoredev/tap"
 tap "oven-sh/bun"
+tap "Arthur-Ficial/tap/apfel"
 
 # Mac App Store (mas list)
 mas "1Blocker", id: 1365531024

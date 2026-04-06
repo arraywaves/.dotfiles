@@ -7,7 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-	"lsp": {
+	"scrollbar": {
+  "cursors": true,
+  "show": "system"
+ },
+ "drag_and_drop_selection": {
+  "delay": 200
+ },
+ "hover_popover_delay": 200,
+ "lsp": {
   "vtsls": {
    "settings": {
     "typescript": {
@@ -81,7 +89,9 @@
 		},
 	},
 	"minimap": {
-		"show": "auto",
+		"thumb_border": "left_open",
+  "thumb": "hover",
+  "show": "auto",
 	},
 	"telemetry": {
 		"metrics": false,
