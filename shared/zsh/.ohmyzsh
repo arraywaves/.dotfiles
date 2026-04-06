@@ -109,6 +109,7 @@ alias cc='claude'
 alias tks='tmux kill-session'
 
 # Infisical
+_inf_icon=$'\xe2\x99\xbe\xef\xb8\x8f'  # ♾️
 if command -v infisical &>/dev/null; then
   [[ -f "$HOME/.dotfiles/.env" ]] && source "$HOME/.dotfiles/.env"
   _infisical_err="$(mktemp)"
@@ -116,26 +117,17 @@ if command -v infisical &>/dev/null; then
   _infisical_exit=$?
 
   if [[ $_infisical_exit -ne 0 ]]; then
-    echo "⚠️  Infisical error — secrets not loaded: $(cat "$_infisical_err")"
+    echo "[infisical] error: secrets not loaded: $(cat "$_infisical_err")"
   else
     eval "$_infisical_out"
     if [[ -n "$U_CTX" ]]; then
       if [[ -n "$TMUX" ]]; then
-        tmux set-option -g status-left \
-          "#[fg=colour242]♾️  ID: #[bold,fg=colour226]${U_CTX}#[nobold,fg=colour242]  Environment: #[bold,fg=colour226]${INFISICAL_ENV}#[default]  "
+        tmux set-option -g status-left "#[fg=colour242]${_inf_icon} ID: #[bold,fg=colour226]${U_CTX}#[nobold,fg=colour242]  Environment: #[bold,fg=colour226]${INFISICAL_ENV}#[default]  "
       else
         _infisical_draw_pinned() {
-          printf '\033[s\033[1;1H\033[2K'
-          printf '\033[38;2;136;136;136m♾️  ID: \033[0m\033[1;33m%s\033[0m\033[38;2;136;136;136m  Environment: \033[0m\033[1;33m%s\033[0m' \
-            "$U_CTX" "$INFISICAL_ENV"
-          printf '\033[u'
+          print -P "%F{242}${_inf_icon} ID: %B%F{226}${U_CTX}%b%F{242}  Environment: %B%F{226}${INFISICAL_ENV}%b%f"
         }
-        _infisical_cleanup() { printf '\033[r\033[%d;1H' "$LINES"; }
-        printf '\033[2;%dr\033[2;1H' "$LINES"
-        _infisical_draw_pinned
         add-zsh-hook precmd _infisical_draw_pinned
-        add-zsh-hook zshexit _infisical_cleanup
-        TRAPWINCH() { printf '\033[2;%dr\033[2;1H' "$LINES"; _infisical_draw_pinned; }
       fi
     fi
   fi
