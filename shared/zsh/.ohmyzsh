@@ -122,10 +122,10 @@ if command -v infisical &>/dev/null; then
     eval "$_infisical_out"
     if [[ -n "$U_CTX" ]]; then
       if [[ -n "$TMUX" ]]; then
-        tmux set-option -g status-left "#[fg=colour242]${_inf_icon} ID: #[bold,fg=colour226]${U_CTX}#[nobold,fg=colour242]  Environment: #[bold,fg=colour226]${INFISICAL_ENV}#[default]  "
+        tmux set-option -g status-left "#[fg=colour242]${_inf_icon}  ID: #[bold,fg=colour226]${U_CTX}#[nobold,fg=colour242]  Environment: #[bold,fg=colour226]${INFISICAL_ENV}#[default]  "
       else
         _infisical_draw_pinned() {
-          print -P "%F{242}${_inf_icon} ID: %B%F{226}${U_CTX}%b%F{242}  Environment: %B%F{226}${INFISICAL_ENV}%b%f"
+          print -P "%F{242}${_inf_icon}  ID: %B%F{226}${U_CTX}%b%F{242}  Environment: %B%F{226}${INFISICAL_ENV}%b%f"
         }
         add-zsh-hook precmd _infisical_draw_pinned
       fi

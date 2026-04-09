@@ -4,6 +4,34 @@
 
 Always use British English in all responses, comments, and documentation. This includes spelling (e.g. "colour", "optimise", "behaviour", "serialise") and vocabulary. The exception is where coding syntax requires American English (e.g. `.normalize()`, `color:` in CSS, API field names, library identifiers). Keep responses concise where possible to prevent excess token usage.
 
+## Using Tools
+
+Of the following tools: 
+- You are always permitted to use the "Allowed Tools" without asking, these are generally non-destructive.
+- You must always ask and perform a dry-run before using any "Destructive Tools", always double-check their use and perform a backup of any critical data. If the total data at risk (such as a directory being removed) exceeds 20MB then do not use the tool and inform the user they must perform it manually before continuing. 
+- You must never use the "No Access Tools" unless explicitly asked by the user in the original prompt.
+
+### Allowed Tools:
+`ls`, `cat`, `head` / `tail`, `less` / `more`, `file`, `stat`, `find`, `locate`, `grep`, `sed`, `cut`, `sort`, `uniq`, `diff`, `wc`, `uname`, `system_profiler`, `hostinfo`, `df`, `du`, `top` / `htop`, `ps`, `uptime`, `date`, `ping`, `nc`, `ifconfig`, `dig`, `nslookup`, `traceroute`, `git log`, `git status`, `git diff`, `svn log`, `tar`, `zip` / `unzip`, `echo`, `printf`, `env`, `which`, `type`, `man`
+
+### Destructive Tools:
+`rmdir`, `shred`, `dd`, `chmod`, `chown`, `sed -i`, `sudo`, `diskutil`, `bless`, `pmset`, `scp`, `sftp`, `ssh`, `git reset`, `git clean`, `git branch -D`, `svn delete`, `tar -rf`, `gzip` / `bzip2`, `truncate`, `eval`, `source`
+
+### Use with Caveats (the pattern is `tool`: "caveat"):
+- `rm`: "only use within the original cwd, and always ask the user first"
+- `mv`: "allow when used non-destructively, check if overwriting of existing files will occur, if destructive then ask the user first"
+- `cp`: "allow when used non-destructively, check if overwriting of existing files will occur, if destructive then ask the user first"
+- `wget`: "allow for fetching/inspecting only, flag if -O, -P, or --output-document would write to disk"
+- `curl`: "allow for requests only, flag if -o, -O, or piping to a shell (| sh, | bash) is involved"
+- `tee`: "allow when appending to logs or temp files, flag if overwriting meaningful project files"
+- `xargs`: "allow for simple piped reads, flag if combined with any destructive or mutating command"
+- `find ... -exec`: "allow for read-only -exec use (e.g. -exec cat, -exec stat), flag if -exec or -execdir would invoke any mutating command"
+- `python -c`, `node -e`, `npx`, `tsx`, `pnpm dlx`, `vpx`: "inline execution can sidestep tool rules, always flag before use"
+
+### No Access Tools:
+- Never run `git add`, `git commit`, `git pull`, or `git push`. Stage nothing, commit nothing, push nothing.
+- The developer handles all version control manually.
+
 ## Package Manager
 
 - Before running any scripts (`build`, `dev`, `install`, `test`, etc.), check the scripts in `package.json` or the relevant dependencies file and check which package manager or toolchain the project uses rather than defaulting to a standard. 
@@ -33,10 +61,6 @@ You are assisting a UK-based Creative Developer with an interest in Design Engin
 ## TypeScript
 
 If your responses include JavaScript please prefer to use the TypeScript equivalent.
-
-## Git
-- Never run git commands. Stage nothing, commit nothing, push nothing.
-- The developer handles all version control manually.
 
 ## Project Memory
 
