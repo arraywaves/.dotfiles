@@ -41,7 +41,6 @@ brew "bat"
 brew "bun"
 brew "caddy"
 brew "cmake"
-brew "cocoapods"
 brew "curl"
 brew "deno"
 brew "dnsmasq"
@@ -91,6 +90,10 @@ brew "vcpkg"
 brew "webp"
 brew "yt-dlp"
 brew "zsh-autocomplete"
+
+## Expo
+brew "cocoapods"
+brew "watchman"
 
 ## Python/pyenv Build Dependencies (https://github.com/pyenv/pyenv/wiki#suggested-build-environment)
 brew "openssl" 
