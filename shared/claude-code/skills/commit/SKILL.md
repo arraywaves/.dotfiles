@@ -27,10 +27,6 @@ Match the existing log style. If no clear pattern, use plain imperative.
 **Rules:**
 - Subject: imperative mood, ≤72 chars, no trailing period
 - Body: only for non-trivial changes — explain *why*, not *what*
-- Always append the trailer:
-  ```
-  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
-  ```
 
 **Conventional Commits** (use if the log shows this pattern):
 ```
@@ -38,7 +34,6 @@ Match the existing log style. If no clear pattern, use plain imperative.
 
 <optional body>
 
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
 Common types: `feat`, `fix`, `refactor`, `chore`, `docs`, `style`, `test`
 
@@ -63,7 +58,6 @@ If approved or edited:
 
    <body if any>
 
-   Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
    EOF
    )"
    ```

@@ -30,6 +30,7 @@ User reports perf issue or wants audit
 ## Key Anti-Pattern Categories
 
 See `references/anti-patterns.md` for full examples with before/after code:
+
 - Unmemoized geometries/materials (re-created each render)
 - Missing `.dispose()` calls (memory leaks)
 - `useState` in animation loops (triggers re-renders)
@@ -43,6 +44,7 @@ See `references/anti-patterns.md` for full examples with before/after code:
 ## Live Debugging Tools
 
 See `references/debugging.md` for setup and usage:
+
 - `@r3f/perf` — in-scene FPS, draw calls, memory overlay
 - React DevTools Profiler — component re-render frequency/cost
 - `renderer.info` — Three.js GPU stats (no extra packages needed)
@@ -51,10 +53,10 @@ See `references/debugging.md` for setup and usage:
 
 ## frameloop Modes Explained
 
-| Mode | Use When | invalidate() | Notes |
-|------|----------|-------------|-------|
-| `"always"` | Scene animates continuously (rotating objects, particles, tweens) | Never call inside useFrame | Default. Renders every frame. Safe for animations. |
-| `"demand"` | Scene is static (models, UI, interaction-only) | Call when state changes (scroll, click, etc.) | Only renders on demand. NEVER call invalidate() inside useFrame—creates infinite loop. |
+| Mode       | Use When                                                          | invalidate()                                  | Notes                                                                                  |
+| ---------- | ----------------------------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `"always"` | Scene animates continuously (rotating objects, particles, tweens) | Never call inside useFrame                    | Default. Renders every frame. Safe for animations.                                     |
+| `"demand"` | Scene is static (models, UI, interaction-only)                    | Call when state changes (scroll, click, etc.) | Only renders on demand. NEVER call invalidate() inside useFrame—creates infinite loop. |
 
 **Golden Rule**: If your scene has ANY continuous animations (`useFrame` hooks that change properties), use `frameloop="always"`. Don't try to micro-optimize with `"demand"` if you have animations—it will cause infinite loops.
 

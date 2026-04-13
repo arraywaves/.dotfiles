@@ -1,6 +1,6 @@
 # .dotfiles
-Maybe someone will find this useful, below this are just some reminders for myself while I work on making things more automated over time. 
 
+Maybe someone will find this useful, below this are just some reminders for myself while I work on making things more automated over time.
 
 ## homebrew
 
@@ -9,12 +9,11 @@ Maybe someone will find this useful, below this are just some reminders for myse
 
 **Install packages:**
 `brew bundle --file=path-to-brewfile`
-*OR*
+_OR_
 `export HOMEBREW_BUNDLE_FILE=path-to-brewfile`
 `brew bundle`
 
 [brew bundle/Brewfile Docs](https://docs.brew.sh/Brew-Bundle-and-Brewfile)
-
 
 ## infisical
 
@@ -35,7 +34,6 @@ Maybe someone will find this useful, below this are just some reminders for myse
 **Add to scripts:**
 `infisical run --env=dev -- [rest of script]`
 
-
 ## zsh
 
 **Add to `.zshrc`:**
@@ -44,27 +42,23 @@ Maybe someone will find this useful, below this are just some reminders for myse
 **Add custom plugins:**
 `ln -s ~/.dotfiles/shared/zsh/plugins/pluginname ~/.oh-my-zsh/custom/plugins/pluginname`
 
-
 ## tmux
 
 **Symlink conf:**
 `ln -s ~/.dotfiles/shared/tmux/.tmux.conf ~/.tmux.conf`
-  
+
 **Symlink tmux macro file:**
 `ln -s ~/.dotfiles/shared/zsh/custom/tmux.zsh ~/.oh-my-zsh/custom/tmux.zsh`
-
 
 ## zed
 
 **Create Symlink**
 `ln -s ~/.dotfiles/shared/zed/settings.json ~/.config/zed/settings.json`
 
-
 ## ghostty
 
 **Add to end of default config:**
 `config-file = /path/to/config`
-
 
 ## caddy + dnsmasq
 
@@ -74,6 +68,7 @@ Maybe someone will find this useful, below this are just some reminders for myse
 `address=/.localhost/127.0.0.1`
 
 **Run:**
+
 - `sudo mkdir -p /etc/resolver`
 - `echo "nameserver 127.0.0.1" | sudo tee /etc/resolver/localhost`
 - `sudo brew services start dnsmasq`
@@ -87,15 +82,18 @@ Maybe someone will find this useful, below this are just some reminders for myse
 `caddy start` to start the service in the background.
 `caddy run` to start the service in a terminal window.
 
-
 ## claude-code
 
-Link dotfiles global CLAUDE.md instructions to claude-code: 
+Link dotfiles global CLAUDE.md instructions to claude-code:
 `ln -s ~/.dotfiles/shared/claude-code/CLAUDE.md ~/.claude/CLAUDE.md` // instructs claude to read and write to `AGENTS.md`
 
-Link dotfiles skills to claude-code:
+Link dotfiles skills and agents to claude-code:
 `rm -rf ~/.claude/skills` if dir already exists
 `ln -s ~/.dotfiles/shared/claude-code/skills ~/.claude/skills`
+`ln -s ~/.dotfiles/shared/claude-code/agents ~/.claude/agents`
+
+_Optional: enable agent teams (experimental)_
+`export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`
 
 **Tavily MCP**
 in `.claude/settings.json` add:
@@ -117,7 +115,6 @@ in `.claude/settings.json` add:
 
 `export OPENCODE_CONFIG=path-to-opencode.json`
 
-
 ## python
 
 **Set PATH:**
@@ -130,27 +127,24 @@ in `.claude/settings.json` add:
 `pyenv install 3.x` picks latest stable minor release in python3 automatically
 `pyenv global 3.x.x` sets system python version
 
-
 ## vite+
 
 **Install (check homebrew if reading this):**
 `curl -fsSL https://vite.plus | bash`
 
 **Commands:**
-`vp create`				Create a new project
-`vp env`					Manage Node.js versions
-`vp env doctor`		Verify your Node setup
-`vp env off`				Opt out of Node management
-`vp install`				Install dependencies
-`vp migrate`				Migrate to Vite+
+`vp create` Create a new project
+`vp env` Manage Node.js versions
+`vp env doctor` Verify your Node setup
+`vp env off` Opt out of Node management
+`vp install` Install dependencies
+`vp migrate` Migrate to Vite+
 `vp help`
-
 
 ## blender
 
 **Open:** `~/.dotfiles/shared/blender/default.blend`
 _File > Save Startup File > Confirm_
-
 
 ## macOS Performance Tip
 

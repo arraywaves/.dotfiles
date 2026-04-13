@@ -92,6 +92,7 @@ brew "yt-dlp"
 brew "zsh-autocomplete"
 
 ## Expo
+cask "expo-orbit"
 brew "cocoapods"
 brew "watchman"
 

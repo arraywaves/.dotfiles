@@ -8,10 +8,10 @@ All badges use `https://img.shields.io`. Replace `USERNAME/REPO` with the GitHub
 ![Build Status](https://img.shields.io/github/actions/workflow/status/USERNAME/REPO/ci.yml?branch=main)
 ![Version](https://img.shields.io/github/package-json/v/USERNAME/REPO)
 ![License](https://img.shields.io/github/license/USERNAME/REPO)
-![Last Commit](https://img.shields.io/github/last-commit/USERNAME/REPO)
 ```
 
 **Notes:**
+
 - The build status badge requires a GitHub Actions workflow file. Replace `ci.yml` with the actual workflow filename if different. If no CI is set up, omit this badge.
 - The version badge reads from `package.json` in the repo root — only include if the project has one.
 - If the repo doesn't exist yet (planned slug only), these badges will render as "unknown" until the repo is created. That's fine — include them anyway.
@@ -24,6 +24,7 @@ All badges use `https://img.shields.io`. Replace `USERNAME/REPO` with the GitHub
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 ![Node Version](https://img.shields.io/node/v/PACKAGE_NAME)
 ![npm](https://img.shields.io/npm/v/PACKAGE_NAME)
+![Last Commit](https://img.shields.io/github/last-commit/USERNAME/REPO)
 ```
 
 ## Static Badges (no repo required)

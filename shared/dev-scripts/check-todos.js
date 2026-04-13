@@ -6,7 +6,7 @@ import { join } from "node:path";
  * Scan all TypeScript files for TODO comments/types/function calls and displays them as warnings.
  *
  * Note: Never causes build fails, TODOs are info only.
- * Note: Auto-filters out JSDoc example lines to avoid false positives.
+ * Note: Auto-filters out TSDoc example lines to avoid false positives.
  *
  * @summary
  * - Types `TODO<"description">`
@@ -56,7 +56,7 @@ files.forEach((file) => {
 		const lines = content.split("\n");
 
 		lines.forEach((line) => {
-			// Exclude JSDoc
+			// Exclude TSDoc
 			if (line.includes("@example")) {
 				return;
 			}

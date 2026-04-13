@@ -30,10 +30,10 @@ else
   SED_INPLACE="sed -i"
 fi
 
-# Check if pnpm is installed
-if ! command -v pnpm &> /dev/null; then
-  echo "📦 pnpm not found. Installing pnpm..."
-  npm install -g pnpm
+# Check if vp is installed
+if ! command -v vp &> /dev/null; then
+  echo "📦 vp not found. Installing vp..."
+  curl -fsSL https://vite.plus | bash
 fi
 
 # Check if project name is provided
@@ -56,7 +56,7 @@ fi
 echo "🚀 Creating new React + Vite project: $PROJECT_NAME"
 
 # Create new Vite project (always use latest create-vite, pin vite version later)
-pnpm create vite "$PROJECT_NAME" --template react-ts
+vp create create-vite -- --directory "$PROJECT_NAME" --template react-ts
 
 # Navigate into project directory
 cd "$PROJECT_NAME"
@@ -66,17 +66,17 @@ $SED_INPLACE '/<link rel="icon".*vite\.svg/d' index.html
 $SED_INPLACE 's/<title>.*<\/title>/<title>'"$PROJECT_NAME"'<\/title>/' index.html
 
 echo "📦 Installing base dependencies..."
-pnpm install
+vp install
 
 # Pin Vite version for Node 18
 if [ "$NODE_VERSION" -lt 20 ]; then
   echo "📌 Pinning Vite to $VITE_VERSION for Node 18 compatibility..."
-  pnpm add -D vite@$VITE_VERSION
+  vp add -D vite@$VITE_VERSION
 fi
 
 echo "📦 Installing Tailwind CSS and dependencies..."
-pnpm install -D tailwindcss@3.4.1 postcss autoprefixer @types/node tailwindcss-animate
-pnpm install class-variance-authority clsx tailwind-merge lucide-react next-themes
+vp install -D tailwindcss@3.4.1 postcss autoprefixer @types/node tailwindcss-animate
+vp install class-variance-authority clsx tailwind-merge lucide-react next-themes
 
 echo "⚙️  Creating Tailwind and PostCSS configuration..."
 cat > postcss.config.js << 'EOF'
@@ -269,8 +269,8 @@ EOF
 
 # Install all shadcn/ui dependencies
 echo "📦 Installing shadcn/ui dependencies..."
-pnpm install @radix-ui/react-accordion @radix-ui/react-aspect-ratio @radix-ui/react-avatar @radix-ui/react-checkbox @radix-ui/react-collapsible @radix-ui/react-context-menu @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-hover-card @radix-ui/react-label @radix-ui/react-menubar @radix-ui/react-navigation-menu @radix-ui/react-popover @radix-ui/react-progress @radix-ui/react-radio-group @radix-ui/react-scroll-area @radix-ui/react-select @radix-ui/react-separator @radix-ui/react-slider @radix-ui/react-slot @radix-ui/react-switch @radix-ui/react-tabs @radix-ui/react-toast @radix-ui/react-toggle @radix-ui/react-toggle-group @radix-ui/react-tooltip
-pnpm install sonner cmdk vaul embla-carousel-react react-day-picker react-resizable-panels date-fns react-hook-form @hookform/resolvers zod
+vp install @radix-ui/react-accordion @radix-ui/react-aspect-ratio @radix-ui/react-avatar @radix-ui/react-checkbox @radix-ui/react-collapsible @radix-ui/react-context-menu @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-hover-card @radix-ui/react-label @radix-ui/react-menubar @radix-ui/react-navigation-menu @radix-ui/react-popover @radix-ui/react-progress @radix-ui/react-radio-group @radix-ui/react-scroll-area @radix-ui/react-select @radix-ui/react-separator @radix-ui/react-slider @radix-ui/react-slot @radix-ui/react-switch @radix-ui/react-tabs @radix-ui/react-toast @radix-ui/react-toggle @radix-ui/react-toggle-group @radix-ui/react-tooltip
+vp install sonner cmdk vaul embla-carousel-react react-day-picker react-resizable-panels date-fns react-hook-form @hookform/resolvers zod
 
 # Extract shadcn components from tarball
 echo "📦 Extracting shadcn/ui components..."
@@ -314,7 +314,7 @@ echo "  - switch, table, tabs, textarea, toast, toggle, toggle-group, tooltip"
 echo ""
 echo "To start developing:"
 echo "  cd $PROJECT_NAME"
-echo "  pnpm dev"
+echo "  vp run dev"
 echo ""
 echo "📚 Import components like:"
 echo "  import { Button } from '@/components/ui/button'"

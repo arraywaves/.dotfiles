@@ -1,69 +1,51 @@
-# Global Claude Code Configuration
+## Memory
+
+- Never create or write to `CLAUDE.md` in any project directory
+- When you need to persist project-specific memory, notes, or configuration, always use `AGENTS.md` instead
+- Read from `AGENTS.md` at the start of tasks the same way you would normally read `CLAUDE.md`
+- If the prompt asks you to "update memory" or "save this", write context to `AGENTS.md`
+- Only write sidecar documentation when prompted or when an agent deems it necessary, create and append new information to `AGENTS.md` and/or `README.md` if critical changes have been made
 
 ## Language
 
-Always use British English in all responses, comments, and documentation. This includes spelling (e.g. "colour", "optimise", "behaviour", "serialise") and vocabulary. The exception is where coding syntax requires American English (e.g. `.normalize()`, `color:` in CSS, API field names, library identifiers). Keep responses concise where possible to prevent excess token usage.
+- Always use British English (e.g. "colour", "optimise", "behaviour") except where code syntax requires US English (e.g. `normalize`, `color`)
+- Keep responses concise
+- Prefer TypeScript to JavaScript
+- Prefer tabs to spaces (4-spaces wide)
 
-## Using Tools
+## Permissions
 
-Of the following tools: 
-- You are always permitted to use the "Allowed Tools" without asking, these are generally non-destructive.
-- You must always ask and perform a dry-run before using any "Destructive Tools", always double-check their use and perform a backup of any critical data. If the total data at risk (such as a directory being removed) exceeds 20MB then do not use the tool and inform the user they must perform it manually before continuing. 
-- You must never use the "No Access Tools" unless explicitly asked by the user in the original prompt.
+- You are permitted to run these commands: `ls`, `cat`, `head` / `tail`, `less` / `more`, `file`, `stat`, `find`, `locate`, `grep`, `sed`, `cut`, `sort`, `uniq`, `diff`, `wc`, `uname`, `system_profiler`, `hostinfo`, `df`, `du`, `top` / `htop`, `ps`, `uptime`, `date`, `ping`, `nc`, `ifconfig`, `dig`, `nslookup`, `traceroute`, `git log`, `git status`, `git diff`, `svn log`, `tar`, `zip` / `unzip`, `echo`, `printf`, `env`, `which`, `type`, `man`
+- You must never run these commands, instead ask the user to manually run them: `rmdir`, `shred`, `dd`, `chmod`, `chown`, `sed -i`, `sudo`, `diskutil`, `bless`, `pmset`, `scp`, `sftp`, `ssh`, `git reset`, `git clean`, `git branch -D`, `svn delete`, `tar -rf`, `gzip` / `bzip2`, `truncate`, `eval`, `source`
+- You must never run these commands unless explicitly asked in the original prompt: `git add`, `git commit` (the `commit` skill overrides this restriction for staging and committing only), `git pull`, `git push`, `docker compose`
+- Only run these commands with caveats:
+- `rm`: only use within the original working directory, always ask the user first
+- `mv`: allow when used non-destructively, check if overwriting of existing files will occur, if destructive then ask the user first
+- `cp`: allow when used non-destructively, check if overwriting of existing files will occur, if destructive then ask the user first
+- `wget`: allow for fetching/inspecting only, flag if -O, -P, or --output-document would write to disk
+- `curl`: allow for requests only, flag if -o, -O, or piping to a shell (| sh, | bash) is involved
+- `tee`: allow when appending to logs or temp files, flag if overwriting meaningful project files
+- `xargs`: allow for simple piped reads, flag if combined with any destructive or mutating command
+- `find ... -exec`: allow for read-only -exec use (e.g. -exec cat, -exec stat), flag if -exec or -execdir would invoke any mutating command
+- `python -c`, `node -e`, `npx`, `tsx`, `pnpm dlx`, `vpx`: inline execution can sidestep tool rules, always flag before use
+- `build`, `dev`, `install`, `test`, any project scripts: check the package manager/toolchain, do not assume `npm`, prefer `pnpm`/`pnpm dlx` or vite+ (`vp`/`vpx`) – and apply the same principle in other ecosystems (e.g. prefer `uv` or `poetry` over `pip` if a `pyproject.toml` is present)
+- `dev`, `preview`, `start`, `test:e2e`: these can hang, prefer alternatives like `build`, `lint`, `check`, `tsc --noEmit`
+- Agents (`~/.claude/agents/`) may override any of the permissions listed above from the tools listed in the agent's `tools` property.
 
-### Allowed Tools:
-`ls`, `cat`, `head` / `tail`, `less` / `more`, `file`, `stat`, `find`, `locate`, `grep`, `sed`, `cut`, `sort`, `uniq`, `diff`, `wc`, `uname`, `system_profiler`, `hostinfo`, `df`, `du`, `top` / `htop`, `ps`, `uptime`, `date`, `ping`, `nc`, `ifconfig`, `dig`, `nslookup`, `traceroute`, `git log`, `git status`, `git diff`, `svn log`, `tar`, `zip` / `unzip`, `echo`, `printf`, `env`, `which`, `type`, `man`
+## Agentic Orchestration
 
-### Destructive Tools:
-`rmdir`, `shred`, `dd`, `chmod`, `chown`, `sed -i`, `sudo`, `diskutil`, `bless`, `pmset`, `scp`, `sftp`, `ssh`, `git reset`, `git clean`, `git branch -D`, `svn delete`, `tar -rf`, `gzip` / `bzip2`, `truncate`, `eval`, `source`
+Sub-agents at `~/.claude/agents/` handle specialised work. Delegate when a task clearly falls into a single domain; work directly for cross-cutting or simple tasks.
 
-### Use with Caveats (the pattern is `tool`: "caveat"):
-- `rm`: "only use within the original cwd, and always ask the user first"
-- `mv`: "allow when used non-destructively, check if overwriting of existing files will occur, if destructive then ask the user first"
-- `cp`: "allow when used non-destructively, check if overwriting of existing files will occur, if destructive then ask the user first"
-- `wget`: "allow for fetching/inspecting only, flag if -O, -P, or --output-document would write to disk"
-- `curl`: "allow for requests only, flag if -o, -O, or piping to a shell (| sh, | bash) is involved"
-- `tee`: "allow when appending to logs or temp files, flag if overwriting meaningful project files"
-- `xargs`: "allow for simple piped reads, flag if combined with any destructive or mutating command"
-- `find ... -exec`: "allow for read-only -exec use (e.g. -exec cat, -exec stat), flag if -exec or -execdir would invoke any mutating command"
-- `python -c`, `node -e`, `npx`, `tsx`, `pnpm dlx`, `vpx`: "inline execution can sidestep tool rules, always flag before use"
-
-### No Access Tools:
-- Never run `git add`, `git commit`, `git pull`, or `git push`. Stage nothing, commit nothing, push nothing.
-- The developer handles all version control manually.
-
-## Package Manager
-
-- Before running any scripts (`build`, `dev`, `install`, `test`, etc.), check the scripts in `package.json` or the relevant dependencies file and check which package manager or toolchain the project uses rather than defaulting to a standard. 
-- In TypeScript projects look for lock-files: `pnpm-lock.yaml`, `yarn.lock`, `bun.lockb` or `package-lock.json`.  Vite+ (`vp run`) is one I prefer to used in my projects, the other is pnpm. 
-- Apply the same principle in other ecosystems (e.g. prefer `uv` or `poetry` over `pip` if a `pyproject.toml` is present).
-
-## Local Development Server
-
-Avoid running scripts that could hang on success like `dev`, `preview`, `start` etc. prefer to use tools like `build`, `lint`, `check`, `vpx tsc --noEmit`, `type-check` if it exists in `./package.json`, etc. If dev is required then please prompt the user and await their response.
-
-## Documentation
-
-Only write additional sidecar documentation when asked, creating and appending to `AGENTS.md` or `README.md` when appropriate is always fine. 
-
-### Documenting Functions in TypeScript
-
-When working in TypeScript please document functions and their usage with the jsdoc-ts skill (`~/.dotfiles/shared/claude-code/skills/jsdoc-ts/SKILL.md`)
-
-### Documenting Functions in Go
-
-When working in Go please document functions and their usage with the godoc skill (`~/.dotfiles/shared/claude-code/skills/godoc/SKILL.md`)
-
-## About the User
-
-You are assisting a UK-based Creative Developer with an interest in Design Engineering, Computer Science and building Full-Stack Apps. 
-
-## TypeScript
-
-If your responses include JavaScript please prefer to use the TypeScript equivalent.
-
-## Project Memory
-
-- Never create or write to `CLAUDE.md` in any project directory.
-- When you need to persist project-specific memory, notes, or configuration, always use `AGENTS.md` instead. Read from `AGENTS.md` at the start of tasks the same way you would normally read `CLAUDE.md`.
-- If the user asks you to "update memory", "save this", or "remember this for the project", write it to `AGENTS.md`.
+| Intent                                                    | Agent              | Examples                                                     |
+| --------------------------------------------------------- | ------------------ | ------------------------------------------------------------ |
+| Creating skills, agents, or MCP servers                   | `toolsmith`        | Build a new skill, create an agent, scaffold an MCP server   |
+| TSDoc, godoc, or Python docstrings                        | `technical-writer` | Document a TypeScript module, add godoc, write docstrings    |
+| System design, architecture decisions                     | `architect`        | Design a data model, choose a framework, plan a migration    |
+| Application code, bug fixes, refactoring, commits         | `code-impl`        | Implement a feature, fix a bug, refactor a module            |
+| Design tokens, component libraries, Figma plugins, a11y   | `design-engineer`  | Configure Style Dictionary, build Lit components, audit a11y |
+| Write new Playwright / Vitest tests                       | `test-writer`      | Write E2E tests, add unit tests, debug a failing test        |
+| Run existing test suites                                  | `test-runner`      | Run tests, report results, check coverage                    |
+| Pre-deployment validation (build, lint, type-check, a11y) | `pre-deploy`       | Check types, run lint, validate build, run a11y scan         |
+| Deploy to Railway, manage env/variables                   | `deploy`           | Deploy a service, set env vars, check logs                   |
+| Image optimisation, media processing                      | `media-ops`        | Batch-compress images for web                                |
+| Frontend UI, visual design, generative art, presentations | `ai-creative`      | Build a landing page, create a slide deck                    |

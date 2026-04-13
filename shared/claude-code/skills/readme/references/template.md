@@ -4,7 +4,7 @@ Use this as the canonical structure. Omit any section the user can't answer yet 
 
 ---
 
-```markdown
+````markdown
 # Project Name
 
 > Short one-liner description of the project.
@@ -19,12 +19,12 @@ Use this as the canonical structure. Omit any section the user can't answer yet 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Screenshots](#screenshots)          <!-- omit if no screenshots -->
+- [Screenshots](#screenshots) <!-- omit if no screenshots -->
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-- [Deployment](#deployment)            <!-- omit if not applicable -->
-- [Running Tests](#running-tests)      <!-- omit if no tests -->
-- [Contributing](#contributing)        <!-- omit if not open to contributions -->
+- [Deployment](#deployment) <!-- omit if not applicable -->
+- [Running Tests](#running-tests) <!-- omit if no tests -->
+- [Contributing](#contributing) <!-- omit if not open to contributions -->
 - [Credits](#credits)
 - [License](#license)
 
@@ -33,12 +33,15 @@ Use this as the canonical structure. Omit any section the user can't answer yet 
 ## Overview
 
 ### What it does
+
 <!-- Describe what the project does and who it's for. -->
 
 ### Why these technologies?
+
 <!-- Explain your technical decisions — framework choice, libraries, architecture rationale. -->
 
 ### Challenges & future plans
+
 <!-- Honest account of hard parts, known limitations, and what you'd build next. -->
 
 ---
@@ -47,8 +50,8 @@ Use this as the canonical structure. Omit any section the user can't answer yet 
 
 <!-- Drop in screenshots or a GIF/video demo. -->
 
-| Feature | Preview |
-|---|---|
+| Feature      | Preview                              |
+| ------------ | ------------------------------------ |
 | Feature name | ![screenshot](./docs/screenshot.png) |
 
 > Live demo: [project-name.vercel.app](https://example.com)
@@ -57,13 +60,13 @@ Use this as the canonical structure. Omit any section the user can't answer yet 
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | <!-- e.g. Next.js 15 --> |
-| Language | <!-- e.g. TypeScript --> |
-| Styling | <!-- e.g. Tailwind CSS --> |
-| Database | <!-- e.g. PostgreSQL via Payload CMS --> |
-| Deployment | <!-- e.g. Vercel --> |
+| Layer      | Technology                               |
+| ---------- | ---------------------------------------- |
+| Framework  | <!-- e.g. Next.js 15 -->                 |
+| Language   | <!-- e.g. TypeScript -->                 |
+| Styling    | <!-- e.g. Tailwind CSS -->               |
+| Database   | <!-- e.g. PostgreSQL via Payload CMS --> |
+| Deployment | <!-- e.g. Vercel -->                     |
 
 ---
 
@@ -79,8 +82,9 @@ Use this as the canonical structure. Omit any section the user can't answer yet 
 ```bash
 git clone https://github.com/USERNAME/REPO.git
 cd REPO
-INSTALL_CMD  # e.g. pnpm install
+INSTALL_CMD  # e.g. vp install / pnpm install
 ```
+````
 
 ### Environment Variables
 
@@ -90,15 +94,15 @@ Copy the example env file and fill in your values:
 cp .env.example .env.local
 ```
 
-| Variable | Description | Required |
-|---|---|---|
-| `DATABASE_URI` | Connection string | ✅ |
-| `NEXT_PUBLIC_URL` | Public base URL | ✅ |
+| Variable          | Description       | Required |
+| ----------------- | ----------------- | -------- |
+| `DATABASE_URI`    | Connection string | ✅       |
+| `NEXT_PUBLIC_URL` | Public base URL   | ✅       |
 
 ### Running Locally
 
 ```bash
-DEV_CMD  # e.g. pnpm dev / vp dev
+DEV_CMD  # e.g. vp run dev / pnpm dev
 ```
 
 ---
@@ -144,14 +148,17 @@ Please follow the existing code style. If in doubt, open an issue first to discu
 
 ## Credits
 
-| Contributor / Resource | Role / Notes |
-|---|---|
-| [Your Name](https://github.com/USERNAME) | Author |
-| <!-- Name --> | <!-- e.g. Design inspiration, library author --> |
+| Contributor / Resource                   | Role / Notes                                     |
+| ---------------------------------------- | ------------------------------------------------ |
+| [Your Name](https://github.com/USERNAME) | Author                                           |
+| <!-- Name -->                            | <!-- e.g. Design inspiration, library author --> |
 
 ---
 
 ## License
 
 Distributed under the [LICENSE_NAME](./LICENSE).
+
+```
+
 ```

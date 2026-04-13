@@ -46,6 +46,8 @@ brew "jsongrep"
 brew "mas"
 brew "php@8.3"
 brew "pnpm"
+brew "pyenv"
+brew "python-setuptools"
 brew "qrencode"
 brew "readline"
 brew "requestly"
@@ -53,6 +55,22 @@ brew "ripgrep"
 brew "sqlite"
 brew "stripe-cli"
 brew "zsh-autocomplete"
+
+## Expo
+cask "expo-orbit"
+brew "cocoapods"
+brew "watchman"
+
+## Python/pyenv Build Dependencies (https://github.com/pyenv/pyenv/wiki#suggested-build-environment)
+brew "openssl"
+brew "readline"
+brew "sqlite3"
+brew "xz"
+brew "tcl-tk@8"
+brew "libb2"
+brew "zstd"
+brew "zlib"
+brew "pkgconfig"
 
 # Taps (brew tap)
 tap "oven-sh/bun"
